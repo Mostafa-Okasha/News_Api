@@ -3,17 +3,28 @@
 let rowData = document.getElementById("rowData");
 let posts = "";
 let req;
-let category;
+let category="general";
+let coun="us";
 let links = document.getElementsByClassName("nav-link");
+let country=document.getElementsByClassName("country");
+getNews(category,coun);
 for(let i =0  ; i <links.length ; i++)
 {
     links[i].addEventListener("click", function(e){
         category  = e.target.innerHTML;
-        getNews(category);
+        getNews(category,coun);
+        alert(category);
     });
 }
-getNews("general");
-function getNews(category)
+for(let i =0  ; i <country.length ; i++)
+{
+    country[i].addEventListener("click", function(e){
+        coun  = e.target.innerHTML;
+        getNews(category,coun);
+        alert(coun);
+    });
+}
+function getNews(category,country)
 {
         if(window.XMLHttpRequest)
             {
@@ -23,9 +34,11 @@ function getNews(category)
             {
                 req = new ActiveXObject('Microsoft.Xmlhttp');
             }
-            let url=`http://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=6aba64583ba8471e92ae0b53d6884d85`;
+            req = new XMLHttpRequest();
+            let url="http://newsapi.org/v2/top-headlines?country=" +country +"&category=" +category +"&apiKey=6aba64583ba8471e92ae0b53d6884d85";
     
         req.open('GET' , url );
+        console.log(url);
 
         req.onreadystatechange =function()
         {
