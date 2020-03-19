@@ -5,7 +5,7 @@ let posts = "";
 let req;
 let category="general";
 let coun="us";
-let links = document.getElementsByClassName("nav-link");
+let links = document.getElementsByClassName("category_link");
 let country=document.getElementsByClassName("country");
 getNews(category,coun);
 for(let i =0  ; i <links.length ; i++)
@@ -13,7 +13,6 @@ for(let i =0  ; i <links.length ; i++)
     links[i].addEventListener("click", function(e){
         category  = e.target.innerHTML;
         getNews(category,coun);
-        alert(category);
     });
 }
 for(let i =0  ; i <country.length ; i++)
@@ -21,7 +20,6 @@ for(let i =0  ; i <country.length ; i++)
     country[i].addEventListener("click", function(e){
         coun  = e.target.innerHTML;
         getNews(category,coun);
-        alert(coun);
     });
 }
 function getNews(category,country)
